@@ -5,33 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#141813">
+  <meta name="theme-color" content="#121610">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
-  <title>아컴 기록실 · 솔로 카드 테이블</title>
+  <title>아컴 기록실 · SCED 웹 테이블</title>
   <link rel="stylesheet" href="./style.css">
-  <script defer src="./engine.js"></script>
   <script defer src="./tabletop.js"></script>
   <script defer src="./app.js"></script>
 </head>
 <body>
-  <a class="skip" href="#main">게임으로 건너뛰기</a>
   <header class="topbar">
-    <div class="shell top-inner">
-      <a class="brand" href="./index.html" aria-label="아컴 기록실">
-        <span class="brand-mark" aria-hidden="true">✦</span>
-        <span><b>아컴 기록실</b><small>ARKHAM · SOLO TABLE</small></span>
-      </a>
-      <nav class="top-actions" aria-label="게임 메뉴">
-        <button data-action="help">도움말</button>
-        <button data-action="settings">저장 관리</button>
-        <button data-action="new" class="primary small">＋ 새 게임</button>
-      </nav>
-    </div>
+    <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">✦</span><span><b>아컴 기록실</b><small>SCED WEB TABLE</small></span></a>
+    <nav class="toolbar" aria-label="테이블 메뉴">
+      <button type="button" data-action="setup" class="gold">＋ 시나리오 준비</button>
+      <button type="button" data-action="library">카드 자료실</button>
+      <button type="button" data-action="deck">플레이어 덱</button>
+      <button type="button" data-action="save">저장</button>
+      <button type="button" data-action="help" aria-label="도움말">?</button>
+    </nav>
   </header>
-  <main id="main" class="shell"></main>
-  <footer class="shell footer"><span>ARKHAM ARCHIVE <i>✦</i> FAN-MADE SOLO TABLE</span><button data-action="help">게임 안내</button></footer>
-  <div id="announcer" class="sr-only" role="status"></div>
+  <main>
+    <section class="gamebar" aria-label="시나리오와 라운드">
+      <div class="game-title"><span class="status-light"></span><div><h1 id="scenario">빈 테이블</h1><small id="save-status">이 브라우저에 자동 저장</small></div></div>
+      <div id="phase" class="phases"></div>
+      <div class="game-actions">
+        <button type="button" data-action="undo" id="undo" disabled>↶ <span>되돌리기</span></button>
+        <button type="button" data-action="note">기록</button>
+      </div>
+    </section>
+    <section class="workspace">
+      <div class="board-wrap">
+        <div id="view" class="view" aria-label="카드 테이블" tabindex="0">
+          <div id="board" class="board">
+            <div id="mat" class="mat" aria-hidden="true"></div>
+            <div id="pieces" class="pieces"></div>
+          </div>
+          <div id="welcome" class="welcome">
+            <div class="welcome-emblem" aria-hidden="true"><span>✦</span></div>
+            <div class="eyebrow">TABLETOP SIMULATOR · SCED</div>
+            <h2>테이블을 차리세요</h2>
+            <p>SCED 카드와 시나리오를 가져오면 실제 카드를 펼쳐<br>덱에서 뽑고, 뒤집고, 토큰을 놓을 수 있습니다.</p>
+            <button type="button" class="gold" data-action="setup">시나리오 준비 →</button>
+            <button type="button" data-action="import" class="subtle">SCED JSON 가져오기</button>
+          </div>
+        </div>
+        <div class="view-controls" aria-label="테이블 보기">
+          <button type="button" data-action="zoom-out" aria-label="축소">−</button>
+          <button type="button" data-action="fit" id="scale" title="테이블을 화면에 맞추기">100%</button>
+          <button type="button" data-action="zoom-in" aria-label="확대">＋</button>
+          <button type="button" id="selected-control" data-action="selected-menu" disabled>선택 카드 ⋯</button>
+        </div>
+        <div class="board-hint">빈 곳 드래그 · 화면 이동 <i>·</i> 휠 · 확대/축소 <i>·</i> 우클릭 · 카드 메뉴</div>
+      </div>
+      <aside class="tray" aria-label="혼돈 주머니와 토큰">
+        <div class="tray-section chaos">
+          <div class="tray-title"><h2>혼돈 주머니</h2><small id="bag-count"></small></div>
+          <div id="chaos-result" class="chaos-result"></div>
+          <div class="tray-actions">
+            <button type="button" data-action="chaos" class="gold">토큰 뽑기</button>
+            <button type="button" data-action="return-chaos" id="return-chaos" disabled>반납</button>
+            <button type="button" data-action="bag" aria-label="혼돈 주머니 구성">⚙</button>
+          </div>
+        </div>
+        <div class="tray-section">
+          <div class="tray-title"><h2>토큰 공급처</h2><small>끌어서 배치</small></div>
+          <div class="tokens" id="tokens"></div>
+        </div>
+        <div class="tray-section shortcuts">
+          <div class="tray-title"><h2>카드 조작</h2><small>선택한 카드</small></div>
+          <p><kbd>F</kbd> 뒤집기 <kbd>Q</kbd> 회전</p>
+          <p><kbd>R</kbd> 섞기 <kbd>D</kbd> 뽑기</p>
+          <p><kbd>Space</kbd> 확대 보기</p>
+        </div>
+      </aside>
+    </section>
+    <section class="hand-dock" id="hand-dock" aria-label="플레이어 손패">
+      <div class="hand-title"><div><small>INVESTIGATOR HAND</small><h2>내 손패 <span id="hand-count">0</span></h2></div><div id="hand-actions"></div></div>
+      <div id="hand" class="hand" tabindex="0"></div>
+    </section>
+  </main>
+  <div id="menu" class="context-menu" hidden></div>
+  <div id="toast" class="toast" role="status" hidden></div>
   <dialog id="dialog" aria-labelledby="dialog-title"></dialog>
-  <noscript><p class="shell">이 게임을 실행하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+  <input id="sced-file" class="sr-only" type="file" accept=".json,application/json" multiple tabindex="-1" aria-label="SCED JSON 가져오기">
+  <input id="save-file" class="sr-only" type="file" accept=".json,application/json" tabindex="-1" aria-label="웹 테이블 저장 가져오기">
+  <noscript>이 테이블을 사용하려면 JavaScript를 켜 주세요.</noscript>
 </body>
 </html>
+

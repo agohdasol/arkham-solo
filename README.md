@@ -1,32 +1,35 @@
-# 아컴 기록실
+# 아컴 기록실 · SCED 웹 테이블
 
-아컴호러 카드게임의 솔로 플레이를 위한 비공식 브라우저 테이블입니다.
+아컴호러 카드게임을 브라우저에서 1인용 테이블로 플레이하는 비공식 앱입니다.
 
-## 바로 시작
+## 집결 시작하기
 
-압축을 풀고 `index.html`을 브라우저로 여세요. 서버 설치나 로그인 없이 실행됩니다. 브라우저에서 파일을 직접 열었을 때 자동 저장이 제한되면 **저장 관리 → 저장 내보내기**로 진행을 보관할 수 있습니다.
+1. [웹 테이블](https://agohdasol.github.io/arkham-solo/)에서 **시나리오 준비**를 엽니다. 로컬에서는 이 폴더의 `index.html`을 열면 됩니다.
+2. **플레이어 카드 → 파일 선택**으로 가지고 있는 `Arkham.SCE.v4.9.3.json`을 가져옵니다.
+3. **광신도의 밤 받기**로 [SCED 캠페인 JSON](https://github.com/Chr1Z93/SCED-downloads/releases/download/v1.22.21/night_of_the_zealot.json)을 받은 뒤, **시나리오 카드 → 파일 선택**으로 가져옵니다. 두 파일을 한 번에 선택할 수도 있습니다.
+4. **집결 · The Gathering**을 선택하고 **롤랜드 기본 덱과 시작 손패 5장 함께 놓기**를 켠 채 **테이블에 펼치기**를 누릅니다.
 
-- **자동 시나리오** — 독립 팬 시나리오 〈닫힌 서고의 밤〉을 바로 플레이합니다. 조사자 2명과 난이도 3종이 있습니다. 카드 효과, 적 행동, 능력 테스트와 결말을 앱이 처리합니다.
-- **SCED 수동 테이블** — **SCED JSON 불러오기**에서 `Arkham.SCE.v4.9.3.json`을 선택합니다. 시나리오 카드는 Tabletop Simulator의 SCED에서 준비한 시나리오를 저장한 JSON이나 별도의 [SCED 커뮤니티 시나리오·캠페인 JSON](https://github.com/Chr1Z93/SCED-downloads/tree/main/downloadable)으로 가져옵니다. 카드 자료실에서 원하는 영역으로 카드를 추가하거나 ArkhamDB 덱 목록을 가져올 수 있습니다. 공식 카드의 효과와 시나리오 규칙은 직접 처리합니다.
-- 원본 카드 그림은 **카드 이미지 켜기**에서 선택적으로 불러옵니다. 그림 호스트의 상태에 따라 표시가 달라질 수 있습니다.
-- 두 모드의 진행 상황은 각각 현재 브라우저에 자동 저장됩니다. 다른 브라우저로 옮기려면 **저장 관리**에서 저장 파일을 내보낸 다음 불러오세요. 카드 자료실은 원본 SCED JSON으로 다시 채울 수 있습니다.
+서재, 주요사건·주요목적 덱, 조우 덱, 별도 보관 상자, 조사자, 플레이어 덱과 손패가 준비됩니다. **한밤의 가면**과 **아래에서부터 삼키는 자**도 캠페인 파일에서 선택할 수 있습니다. 이전 시나리오 결과에 따른 추가 설정은 캠페인 메모와 공식 가이드를 보면서 처리하세요.
 
-첨부된 SCED ZIP은 구조를 파악하는 참고 자료로 사용했습니다. 플레이에 쓰이는 것은 TTS JSON의 카드와 토큰 데이터입니다. 앱은 첨부 파일의 Lua 코드를 실행하지 않습니다.
+## 조작
 
-## GitHub Pages 공개 배포
+- **드래그**로 카드, 덱, 토큰을 자유롭게 배치합니다. 손패에서 테이블로, 테이블에서 손패로 카드를 끌어다 놓을 수 있습니다. **Shift**를 누르고 다른 카드에 떨어뜨리면 한 더미로 합칩니다.
+- **우클릭**, **Enter**, 또는 하단의 **선택 카드 ⋯**에서 뒤집기, 회전, 덱 검색, 뽑기, 섞기, 버리기 등을 합니다. 카드 위의 토큰 개수도 여기에서 바꿀 수 있습니다.
+- **더블 클릭** 또는 **Space**로 카드를 확대합니다. **F**는 뒤집기, **Q**는 회전, **R**은 섞기, **D**는 뽑기입니다.
+- **혼돈 주머니**에서 토큰을 뽑고, 능력 테스트가 끝나면 반납합니다. 토큰 공급처에서 다른 토큰을 끌어 카드나 테이블 위에 놓을 수 있습니다.
+- 빈 곳을 끌면 화면이 이동하고, 휠 또는 확대 버튼으로 확대·축소합니다. **Ctrl+Z**로 직전 조작을 되돌립니다.
 
-1. 본인 계정에 새 공개 저장소를 만듭니다.
-2. 압축에서 꺼낸 파일을 저장소의 **루트**에 올립니다. `index.html`이 저장소 첫 화면에서 보여야 합니다. `.nojekyll` 파일도 포함합니다.
-3. 저장소의 **Settings → Pages → Build and deployment**에서 **Deploy from a branch**를 선택합니다.
-4. 브랜치 **main**, 폴더 **/(root)**를 선택하고 저장합니다. 배포 주소는 같은 Pages 설정 화면에서 확인합니다.
+## 다른 덱이나 시나리오
 
-게임 페이지에는 `noindex, nofollow, noarchive`가 설정되어 있습니다. 이를 지원하는 검색엔진에 검색 결과 제외를 요청합니다. 공개 Pages 주소를 아는 사람은 접속할 수 있고, 공개 저장소는 GitHub 검색에 노출될 수 있습니다. [GitHub Pages 설정](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [Google 검색 색인 차단](https://developers.google.com/search/docs/crawling-indexing/block-indexing)
+- **플레이어 덱**에서 ArkhamDB 내보내기 JSON이나 카드 코드 목록을 붙여넣습니다. 카드 목록을 쓰는 경우 각 줄에 `01020 x2`처럼 코드와 수량을 입력합니다.
+- 다른 SCED 캠페인 상자나 TTS 저장 게임 JSON을 가져올 수 있습니다. 저장 게임은 최상위 카드·덱과 저장된 위치를 테이블로 복원합니다. TTS의 Lua 자동화, 모델과 물리 동작은 브라우저에서 재현하지 않습니다.
+- 카드 효과, 적 행동, 캠페인 결말은 실제 카드와 가이드를 읽고 플레이어가 처리합니다. 플레이 기록과 테이블은 이 브라우저에 저장되며, **저장**에서 파일로 내보내거나 복원할 수 있습니다.
 
-## 출처
+## 데이터와 배포
 
-- 보드 구성과 진행 흐름 참고 — [halogenandtoast/ArkhamHorror](https://github.com/halogenandtoast/ArkhamHorror)
-- 카드 가져오기 형식 — [SCED](https://github.com/Chr1Z93/SCED)
-- 카드게임 원작과 공식 규칙 — [Fantasy Flight Games](https://www.fantasyflightgames.com/product/arkham-horror-the-card-game/)
+JSON 파일은 브라우저에서 읽으며, 공개 저장소에는 웹앱 코드만 올라갑니다. 카드 그림은 JSON에 적힌 이미지 주소에서 브라우저로 표시됩니다. 공개 페이지에는 `noindex, nofollow, noarchive`가 설정되어 있습니다. 이를 지원하는 검색엔진은 페이지를 검색 결과에서 제외할 수 있으며, 주소를 아는 사람은 열 수 있습니다.
 
-공개 배포 파일에는 앱과 독립 시나리오만 포함됩니다. SCED 카드 이미지와 첨부 원본은 플레이 중 사용자의 브라우저에서 별도로 불러옵니다.
-
+- [SCED 프로젝트](https://github.com/Chr1Z93/SCED)
+- [광신도의 밤 캠페인 가이드](https://images-cdn.fantasyflightgames.com/filer_public/8d/30/8d308b73-92f1-4b1e-aa7f-ce39e8d79786/night_of_the_zealot_campaign_guide.pdf)
+- [아컴호러 카드게임 공식 자료](https://www.fantasyflightgames.com/product/arkham-horror-the-card-game/)
+- [참고 웹 구현](https://github.com/halogenandtoast/ArkhamHorror)
